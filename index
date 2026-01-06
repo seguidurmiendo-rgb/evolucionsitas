@@ -3,27 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <title>Ideas – Club de Tiro Deportivo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: Arial; background:#111; color:#eee; padding:20px; }
-    h1 { color:#c9a227; }
-    form { max-width:500px; }
-    input, textarea, button {
-      width:100%; margin:8px 0; padding:10px;
-      background:#222; color:#fff; border:1px solid #444;
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #eee;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
     }
-    button { background:#c9a227; color:#000; font-weight:bold; }
+    h1 {
+      color: #c9a227;
+      margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    iframe {
+      width: 100%;
+      max-width: 640px;
+      height: 900px;
+      border: none;
+      background: #111;
+    }
   </style>
 </head>
 <body>
 
-<h1>Propuestas para el Club de Tiro</h1>
-<p>Dejá tu idea para mejorar el club.</p>
+  <h1>Ideas y Propuestas</h1>
+  <p>
+    Este espacio está destinado a que los socios aporten ideas para mejorar
+    el club de tiro deportivo.
+  </p>
 
-<form action="https://formspree.io/f/TU_ID_AQUI" method="POST">
-  <input type="text" name="nombre" placeholder="Tu nombre (opcional)">
-  <textarea name="idea" rows="5" placeholder="Escribí tu idea" required></textarea>
-  <button type="submit">Enviar</button>
-</form>
+  <iframe
+    src="https://docs.google.com/forms/d/e/1FAIpQLSf-GIhDFif_n7NPIdaIX1KHSVGMcEBuLCEiIanCG0hxAMhI3Q/viewform?embedded=true"
+    width="640"
+    height="869"
+    frameborder="0"
+    marginheight="0"
+    marginwidth="0">
+    Cargando…
+  </iframe>
 
 </body>
 </html>
