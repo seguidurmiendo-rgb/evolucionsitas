@@ -1,51 +1,276 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Ideas – Club de Tiro Deportivo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ideas – Evolución SITAS</title>
+  <meta name="description" content="Formulario de ideas y propuestas para el club de tiro deportivo." />
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: #eee;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
+    :root{
+      --bg0:#070A10;
+      --bg1:#0B1220;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.10);
+      --text:#E7EAF0;
+      --muted:#AAB3C5;
+      --accent:#D6B25E;
+      --accent2:#7DD3FC;
+      --border: rgba(255,255,255,.12);
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius: 18px;
     }
-    h1 {
-      color: #c9a227;
-      margin-bottom: 10px;
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(125,211,252,.10), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(214,178,94,.14), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
     }
-    p {
-      margin-bottom: 20px;
+
+    .wrap{
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 28px 16px 56px;
     }
-    iframe {
+
+    header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      margin: 8px 0 22px;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      text-align:left;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      border-radius: 999px;
+      width: fit-content;
+      backdrop-filter: blur(8px);
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:50%;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      box-shadow: 0 0 0 6px rgba(125,211,252,.08);
+    }
+    .badge span{
+      font-size: 12px;
+      letter-spacing: .3px;
+      color: var(--muted);
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(22px, 4vw, 34px);
+      line-height:1.15;
+      letter-spacing: .2px;
+    }
+    .subtitle{
+      margin:0;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.55;
+      max-width: 60ch;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      text-decoration:none;
+      font-size: 13px;
+      backdrop-filter: blur(10px);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.18);
+    }
+    .btn.primary{
+      border-color: rgba(214,178,94,.35);
+      background: linear-gradient(135deg, rgba(214,178,94,.18), rgba(125,211,252,.10));
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(500px 200px at 10% 0%, rgba(125,211,252,.14), transparent 55%),
+                  radial-gradient(420px 220px at 90% 10%, rgba(214,178,94,.16), transparent 60%);
+      pointer-events:none;
+      opacity:.8;
+    }
+
+    .card-inner{
+      position:relative;
+      padding: 16px;
+    }
+
+    .info{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .pill{
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.18);
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    .form-shell{
+      position:relative;
+      border-top: 1px solid var(--border);
+      background: rgba(0,0,0,.10);
+      padding: 14px;
+    }
+
+    /* Hacemos el iframe “responsive” sin deformar */
+    .iframe-wrap{
+      width:100%;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      overflow:hidden;
+      background: rgba(0,0,0,.18);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+
+    iframe{
+      display:block;
       width: 100%;
-      max-width: 640px;
-      height: 900px;
-      border: none;
-      background: #111;
+      height: 900px; /* podés subir/bajar */
+      border: 0;
+    }
+
+    footer{
+      margin-top: 16px;
+      color: rgba(170,179,197,.75);
+      font-size: 12.5px;
+      text-align:center;
+    }
+    footer a{ color: rgba(214,178,94,.9); text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
+
+    @media (min-width: 880px){
+      .grid{
+        grid-template-columns: 1fr;
+      }
+      .card-inner{
+        padding: 18px 18px 16px;
+      }
+      .form-shell{
+        padding: 16px 18px 18px;
+      }
+      iframe{
+        height: 880px;
+      }
     }
   </style>
 </head>
+
 <body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="badge">
+          <div class="dot"></div>
+          <span>Canal oficial de propuestas</span>
+        </div>
+        <h1>Ideas y Propuestas</h1>
+        <p class="subtitle">
+          Dejá tu idea para mejorar el club: seguridad, instalaciones, cursos, competencias o lo que sume.
+          Se recibe todo y se revisa en comisión.
+        </p>
+        <div class="info">
+          <div class="pill">✅ 100% online</div>
+          <div class="pill">🧾 Queda registrado</div>
+          <div class="pill">🔒 Sin publicar datos</div>
+        </div>
+      </div>
 
-  <h1>Ideas y Propuestas</h1>
-  <p>
-    Este espacio está destinado a que los socios aporten ideas para mejorar
-    el club de tiro deportivo.
-  </p>
+      <div class="actions">
+        <a class="btn primary" href="#form">Ir al formulario</a>
+        <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSf-GIhDFif_n7NPIdaIX1KHSVGMcEBuLCEiIanCG0hxAMhI3Q/viewform" target="_blank" rel="noopener">
+          Abrir en pestaña nueva
+        </a>
+      </div>
+    </header>
 
-  <iframe
-    src="https://docs.google.com/forms/d/e/1FAIpQLSf-GIhDFif_n7NPIdaIX1KHSVGMcEBuLCEiIanCG0hxAMhI3Q/viewform?embedded=true"
-    width="640"
-    height="869"
-    frameborder="0"
-    marginheight="0"
-    marginwidth="0">
-    Cargando…
-  </iframe>
+    <main class="grid">
+      <section class="card" id="form">
+        <div class="card-inner">
+          <h2 style="margin:0; font-size:18px; letter-spacing:.2px;">Cargar nueva idea</h2>
+          <p style="margin:8px 0 0; color:var(--muted); font-size:13.5px; line-height:1.55;">
+            Si podés, sé concreto: qué es, por qué sirve y (si aplica) cómo lo implementarías.
+          </p>
+        </div>
 
+        <div class="form-shell">
+          <div class="iframe-wrap">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSf-GIhDFif_n7NPIdaIX1KHSVGMcEBuLCEiIanCG0hxAMhI3Q/viewform?embedded=true"
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Sitio publicado con GitHub Pages · Respuestas guardadas en Google Forms/Sheets
+    </footer>
+  </div>
 </body>
 </html>
+
